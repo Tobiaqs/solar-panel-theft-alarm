@@ -250,14 +250,11 @@ void configMenu() {
 void waitForInput() {
   while (Serial.available() == 0);
 
-  if (Serial.available() != 1) {
-    Serial.println("Do not enter more than one character.");
-    configMenu();
-    waitForInput();
-    return;
-  }
-
   byte choice = Serial.read() - 48;
+
+  while (Serial.available() != 0) {
+    Serial.read();
+  }
 
   if (choice > 9 && choice != 17 && choice != 18 && choice != 19 && choice != 20 && choice != 21) {
     Serial.println("Invalid answer. Try again.");
