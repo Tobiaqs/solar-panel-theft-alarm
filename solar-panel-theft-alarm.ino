@@ -85,12 +85,14 @@ void loop() {
 
   // Store new max reading if necessary
   if (measurement > statMax) {
+    statMax = measurement;
     EEPROM.put(EEPROM_STAT_MAX, measurement);
     EEPROM.commit();
   }
   
   // Store new min reading if necessary
   if (measurement < statMin) {
+    statMin = measurement;
     EEPROM.put(EEPROM_STAT_MIN, measurement);
     EEPROM.commit();
   }
